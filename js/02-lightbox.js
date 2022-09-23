@@ -1,20 +1,15 @@
 import { galleryItems } from "./gallery-items.js";
 // Change code below this line
 
-console.log(galleryItems);
-
 const container = document.querySelector(".gallery");
 
 function addGallery(galleryItems) {
-  let makeGallerylink = galleryItems
-    .map((image, i) => {
-      let makeGalleryTeg = `
-		<a class="gallery__item" href="${galleryItems[i].original}">
-			<img class="gallery__image" src="${galleryItems[i].preview}" alt="${galleryItems[i].description}" />
-		</a>`;
-
-      return makeGalleryTeg;
-    })
+  const makeGallerylink = galleryItems
+    .map((image) => 
+      `<a class="gallery__item" href="${image.original}">
+			<img class="gallery__image" src="${image.preview}" alt="${image.description}" />
+		</a>` 
+    )
     .join("");
 
   container.insertAdjacentHTML("beforeend", makeGallerylink);
@@ -25,19 +20,11 @@ function addGallery(galleryItems) {
 addGallery(galleryItems);
 
 
-
-container.addEventListener("click", onClickGallery);
-
-function onClickGallery(event) {
-	event.preventDefault();
-	const isGalleryEl = event.target.classList.contains("gallery__image");
-	if (!isGalleryEl) {
-		return;
-	}
+const gallery = new SimpleLightbox('.gallery a', {
 	
-}
+	captionsData: 'alt',
+	captionDelay: 250,
 
-	let gallery = new SimpleLightbox('.gallery a');
-gallery.on('show.simplelightbox', function () {
-	// do something…
 });
+
+gallery.on('show.simplelightbox');

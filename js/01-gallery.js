@@ -6,15 +6,15 @@ const container = document.querySelector("div.gallery");
 
 function addGallery(galleryItems) {
   let makeGallerylink = galleryItems
-    .map((image, i) => {
+    .map((image) => {
       let makeGalleryTeg = `<div class="gallery__item">
-  <a class="gallery__link" href="${galleryItems[i].original}">
+  <a class="gallery__link" href="${image.original}">
     <img
       class="gallery__image"
-      src="${galleryItems[i].preview}"
-      data-source="${galleryItems[i].original}"
-      alt="${galleryItems[i].description}"
-    />
+      src="${image.preview}"
+      data-source="${image.original}"
+      alt="${image.description}"
+		/>
   </a>
 </div>`;
 
